@@ -20,11 +20,14 @@ terraform {
       source  = "terraform-provider-openstack/openstack"
       version = "2.1.0"
     }
+    random = {
+      source = "hashicorp/random"
+      version = "3.8.1"
+    }
   }
 }
 
 provider "selectel" {
-  domain_name = "553508"
   auth_region = "ru-9"
   auth_url    = "https://cloud.api.selcloud.ru/identity/v3/"
 }
