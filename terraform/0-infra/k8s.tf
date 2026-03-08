@@ -26,9 +26,24 @@ resource "selectel_mks_nodegroup_v1" "nodegroup_1" {
   volume_gb                    = 32
   volume_type                  = "fast.ru-9a"
   install_nvidia_device_plugin = false
-  labels                       = {
-    "label-key0": "label-value0",
-    "label-key1": "label-value1",
-    "label-key2": "label-value2",
+  labels = {
+    "label-key0" : "label-value0",
+    "label-key1" : "label-value1",
+    "label-key2" : "label-value2",
+  }
+}
+
+resource "selectel_mks_nodegroup_v1" "gpu_spot" {
+  cluster_id                   = selectel_mks_cluster_v1.ai_cluster.id
+  project_id                   = selectel_mks_cluster_v1.ai_cluster.project_id
+  region                       = selectel_mks_cluster_v1.ai_cluster.region
+  availability_zone            = "ru-9a"
+  flavor_id                    = "t4.1"
+  nodes_count                  = 1
+  install_nvidia_device_plugin = true
+  labels = {
+    "gpu" : "true",
+    "spot" : "true",
+    "accelerator" : "nvidia-tesla-t4"
   }
 }
