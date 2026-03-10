@@ -9,13 +9,6 @@ traefik:
   gateway:
     enabled: false
 
-  experimental:
-    kubernetesGateway:
-      enabled: true
-
-  additionalArguments:
-  - "--experimental.kubernetesgateway"
-
   ingressRoute:
     dashboard:
       enabled: false

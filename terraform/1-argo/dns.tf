@@ -4,11 +4,11 @@ data "kubernetes_service_v1" "traefik" {
     namespace = "traefik"
   }
 
-  depends_on = [kubectl_manifest.appset]
+  depends_on = [kubernetes_manifest.appset]
 }
 
 resource "cloudflare_dns_record" "gpt" {
-  zone_id = var.cloudflare_zone_id
+  zone_id = data.infisical_secrets.main.secrets["cloudflare_zone_id"].value
   name    = "gpt.m1xxos.tech"
   type    = "A"
   content = data.kubernetes_service_v1.traefik.status[0].load_balancer[0].ingress[0].ip

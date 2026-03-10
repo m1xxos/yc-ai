@@ -27,14 +27,14 @@ spec:
         effect: "NoSchedule"
       containers:
       - name: vllm
-        image: vllm/vllm-openai:latest
+        image: vllm/vllm-openai:v0.17.0
         args:
         - "--model"
-        - "openai/gpt-oss-20b"
+        - "unsloth/gpt-oss-20b-GGUF"
         - "--max-model-len"
         - "32768"
         - "--quantization"
-        - "awq"
+        - "gguf"
         - "--gpu-memory-utilization"
         - "0.95"
         ports:

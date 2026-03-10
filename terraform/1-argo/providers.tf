@@ -8,10 +8,6 @@ terraform {
       source  = "hashicorp/kubernetes"
       version = "~> 2.36"
     }
-    kubectl = {
-      source  = "gavinbunney/kubectl"
-      version = "~> 1.19"
-    }
     cloudflare = {
       source  = "cloudflare/cloudflare"
       version = "~> 5.0"
@@ -45,16 +41,14 @@ provider "helm" {
   }
 }
 
-provider "kubectl" {
-  host                   = local.cluster.server
-  cluster_ca_certificate = base64decode(local.cluster["certificate-authority-data"])
-  client_certificate     = base64decode(local.user["client-certificate-data"])
-  client_key             = base64decode(local.user["client-key-data"])
-  load_config_file       = false
-}
-
 ephemeral "infisical_secret" "cloudflare_api_token" {
   name         = "cloudflare_api_token"
+  env_slug     = local.infisical_env_slug
+  folder_path  = local.infisical_folder_path
+  workspace_id = local.infisical_workspace_id
+}
+
+data "infisical_secrets" "main" {
   env_slug     = local.infisical_env_slug
   folder_path  = local.infisical_folder_path
   workspace_id = local.infisical_workspace_id

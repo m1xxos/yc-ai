@@ -4,7 +4,7 @@ resource "helm_release" "argocd" {
   chart            = "argo-cd"
   namespace        = "argocd"
   create_namespace = true
-  version          = "7.8.13"
+  version          = "9.4.10"
 
   set {
     name  = "server.service.type"
@@ -17,10 +17,10 @@ resource "helm_release" "argocd" {
   }
 }
 
-resource "kubectl_manifest" "appset" {
+resource "kubernetes_manifest" "appset" {
   depends_on = [helm_release.argocd]
 
-  yaml_body = yamlencode({
+  manifest = {
     apiVersion = "argoproj.io/v1alpha1"
     kind       = "ApplicationSet"
     metadata = {
@@ -32,7 +32,7 @@ resource "kubectl_manifest" "appset" {
       goTemplateOptions = ["missingkey=error"]
       generators = [{
         git = {
-          repoURL  = "https://github.com/m1xxos/yc-ai.git"
+          repoURL  = "https://github.com/m1xxos/selectel-ai.git"
           revision = "HEAD"
           directories = [{
             path = "argo/*"
@@ -46,7 +46,7 @@ resource "kubectl_manifest" "appset" {
         spec = {
           project = "default"
           source = {
-            repoURL        = "https://github.com/m1xxos/yc-ai.git"
+            repoURL        = "https://github.com/m1xxos/selectel-ai.git"
             targetRevision = "HEAD"
             path           = "{{ .path.path }}"
           }
@@ -66,5 +66,5 @@ resource "kubectl_manifest" "appset" {
         }
       }
     }
-  })
+  }
 }

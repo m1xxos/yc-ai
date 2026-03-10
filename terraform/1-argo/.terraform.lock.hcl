@@ -9,14 +9,6 @@ provider "registry.terraform.io/cloudflare/cloudflare" {
   ]
 }
 
-provider "registry.terraform.io/gavinbunney/kubectl" {
-  version     = "1.19.0"
-  constraints = "~> 1.19"
-  hashes = [
-    "h1:quymfa/OKEfWI5JXFEwGbUY2aAy0vet3rA9JWJam+3k=",
-  ]
-}
-
 provider "registry.terraform.io/hashicorp/helm" {
   version     = "2.17.0"
   constraints = "~> 2.17"

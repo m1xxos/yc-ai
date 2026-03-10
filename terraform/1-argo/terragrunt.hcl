@@ -2,10 +2,6 @@ include "root" {
   path = find_in_parent_folders("root.hcl")
 }
 
-locals {
-  env = read_terragrunt_config(find_in_parent_folders("env.hcl"))
-}
-
 dependency "infra" {
   config_path = "../0-infra"
 
@@ -16,6 +12,5 @@ dependency "infra" {
 }
 
 inputs = {
-  kubeconfig         = dependency.infra.outputs.kubeconfig
-  cloudflare_zone_id = local.env.locals.cloudflare_zone_id
+  kubeconfig = dependency.infra.outputs.kubeconfig
 }
