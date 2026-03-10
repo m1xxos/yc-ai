@@ -1,14 +1,14 @@
 <h1 align="center">
   <br>
-  <a href="https://github.com/m1xxos/homelab">
+  <a href="https://github.com/m1xxos/selectel-ai">
     <img src="assets/icon.png" alt="Logo" width="80" height="80">
   </a>
   <br>
-  yc-ai
+  Selectel-ai
   <br>
 </h1>
 
-<h4 align="center">Ai with Yandex Cloud k8s gpus</h4>
+<h4 align="center">Ai with Selectel k8s gpus</h4>
 
 ## How to use
 Steps to get started
