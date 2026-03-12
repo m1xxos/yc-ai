@@ -19,7 +19,7 @@ resource "selectel_mks_nodegroup_v1" "gpu_spot" {
   cluster_id                   = selectel_mks_cluster_v1.ai_cluster.id
   project_id                   = selectel_mks_cluster_v1.ai_cluster.project_id
   region                       = selectel_mks_cluster_v1.ai_cluster.region
-  availability_zone            = "ru-9a"
+  availability_zone            = "ru-3b"
   flavor_id                    = "3031" # GL3.4-32768-0-1GPU
   volume_gb                    = 100
   volume_type                  = "universal.ru-9a"

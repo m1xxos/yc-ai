@@ -13,7 +13,7 @@ variable "project_id" {
 
 variable "region" {
   type    = string
-  default = "ru-9"
+  default = "ru-3"
 }
 
 variable "infisical_id" {

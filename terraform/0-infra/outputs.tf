@@ -5,6 +5,6 @@ data "selectel_mks_kubeconfig_v1" "kubeconfig" {
 }
 
 output "kubeconfig" {
-  value = data.selectel_mks_kubeconfig_v1.kubeconfig.raw_config
+  value     = data.selectel_mks_kubeconfig_v1.kubeconfig.raw_config
   sensitive = true
 }
