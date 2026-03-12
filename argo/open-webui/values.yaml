@@ -1,0 +1,17 @@
+open-webui:
+  ollama:
+    enabled: false
+
+  pipelines:
+    enabled: false
+
+  openaiBaseApiUrl: "http://vllm.vllm.svc.cluster.local:8000/v1"
+
+  ingress:
+    enabled: true
+    class: traefik
+    host: owu.m1xxos.tech
+    tls: true
+    existingSecret: owu-m1xxos-tech-tls
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-prod

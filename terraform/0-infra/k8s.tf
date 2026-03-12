@@ -1,3 +1,7 @@
+locals {
+  az = "${var.region}a"
+}
+
 data "selectel_mks_kube_versions_v1" "versions" {
   project_id = var.project_id
   region     = "ru-9"
@@ -19,10 +23,10 @@ resource "selectel_mks_nodegroup_v1" "gpu_spot" {
   cluster_id                   = selectel_mks_cluster_v1.ai_cluster.id
   project_id                   = selectel_mks_cluster_v1.ai_cluster.project_id
   region                       = selectel_mks_cluster_v1.ai_cluster.region
-  availability_zone            = "ru-3b"
+  availability_zone            = local.az
   flavor_id                    = "3031" # GL3.4-32768-0-1GPU
   volume_gb                    = 100
-  volume_type                  = "universal.ru-9a"
+  volume_type                  = "universal.${local.az}"
   nodes_count                  = 1
   install_nvidia_device_plugin = false
   preemptible                  = true
