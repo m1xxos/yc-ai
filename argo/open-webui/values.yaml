@@ -6,6 +6,13 @@ open-webui:
     enabled: false
 
   openaiBaseApiUrl: "http://vllm.vllm.svc.cluster.local:8000/v1"
+  openaiApiKey: "none"
+
+  persistence:
+    enabled: true
+    provider: local
+    size: 2Gi
+    storageClass: ""
 
   ingress:
     enabled: true
